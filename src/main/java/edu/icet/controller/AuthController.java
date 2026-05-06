@@ -9,13 +9,14 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/secure")
 public class AuthController {
     @GetMapping("/customer")
-    public String sayHelloForCustomer(){
+    @PreAuthorize("hasRole('USER')")
+    public String sayHelloForCustomer() {
         return "hello customer";
     }
 
     @GetMapping("/admin")
     @PreAuthorize("hasRole('ADMIN')")
-    public String sayHelloForAdmin(){
+    public String sayHelloForAdmin() {
         return "hello admin";
     }
 }
