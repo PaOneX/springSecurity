@@ -1,5 +1,8 @@
 spring:
-  security:
-    user:
-      name: pawan
-      password: pawan@123
+  datasource:
+    url: jdbc:mysql://localhost:3306/springSecurity?createDatabaseIfNotExist=true
+    password: 1234
+
+  jpa:
+    hibernate:
+      ddl-auto: create
