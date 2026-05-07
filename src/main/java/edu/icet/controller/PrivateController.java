@@ -5,10 +5,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/public")
-public class PublicController {
+@RequestMapping("/private")
+public class PrivateController {
+
     @GetMapping
-    public String hello(){
+    public String hello() {
         return "hello";
     }
 }

@@ -1,38 +1,22 @@
 package edu.icet.controller;
 
+import edu.icet.model.User;
+import edu.icet.service.MyUserServiceDetails;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.*;
 
+@RequiredArgsConstructor
 @RestController
-@RequestMapping("/secure")
+@RequestMapping("/auth")
 public class AuthController {
 
-    @GetMapping("/customer")
-    public String sayHelloForCustomer() {
-        return "hello customer";
+    private final MyUserServiceDetails service;
+
+    @PostMapping("/register")
+    public void register(@RequestBody User user) {
+        service.save(user);
     }
 
-    @GetMapping("/admin")
-    @PreAuthorize("hasRole('ADMIN')")
-    public String sayHelloForAdmin() {
-        return "hello admin";
-    }
-
-    @GetMapping("/manager")
-    @PreAuthorize("hasRole('MANAGER')")
-    public String sayHelloForManager() {
-        return "hello manager";
-    }
-
-    @GetMapping("/cashier")
-    public String sayHelloForCashier() {
-        return "hello cashier";
-    }
-
-    @GetMapping("/staff")
-    public String sayHelloForStaff() {
-        return "hello Staff";
-    }
 }
